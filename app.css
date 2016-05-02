@@ -23,6 +23,11 @@ li {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   padding: 10px 16px;
   cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+li:hover {
+  background-color: lightgrey;
 }
 
 li .fa-bars {
@@ -35,6 +40,12 @@ li .fa-trash {
   cursor: pointer;
   position: relative;
   top: 2px;
+  opacity: 0.3;
+  transition: opacity 1s;
+}
+
+li .fa-trash:hover {
+  opacity: 1;
 }
 
 li .notes {
@@ -46,6 +57,7 @@ li .notes {
   padding: 5 12px;
   border-radius: 4px;
   font-family: monospace;
+  display: none;
 }
 
 .alert {

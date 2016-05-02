@@ -74,4 +74,13 @@ $(document).ready(function() {
   $('#play-button').on('click', playAll);
 
   // Add Your Code Here.
+
+  // Hide and Remove song when clicking trash icon
+  $('.fa-trash').click(function() {
+    $(this).parent().slideUp(500, function() {
+      $(this).remove();
+    });
+  });
+
+  
 });

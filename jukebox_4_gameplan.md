@@ -4,22 +4,27 @@ Read through index.html and app.js and make sure you understand everything that'
 When the delete icons for a song are clicked slide up that song over 0.5s. AFTER the song is finished sliding up, remove it from the list entirely.
 
 ```js
-$('fa-fa').click(function() {
-  // songbar.slideUp(500);
-  // $(this) songbar.remove();
+$('.fa-trash').click(function() {
+  $(this).parent().slideUp(500, function() {
+    $(this).remove();
+  });
 });
 ```
 
 Make the song notes hidden when the page initially loads. Then, when you double click a song, they should slide down over 0.3 second. (Hint: See the dblclick event type) When the page loads, make the message fade in over 0.8s. Then, after 3s have passed, fade out the message over 0.8s.
 
-
+```css
+.notes {
+  display: none;
+}
+```
 
 Make the songs' delete icons have a default opacity of 0.3. When your mouse hovers over a song, animate its delete icon's opacity to 1 using CSS transitions. (Hint: The ":hover" CSS Selector may be helpful)
 
 ```css
 fa-fa-icon {
   opacity: 0.3;
-  transition: opacity, 1s;
+  transition: opacity 1s;
 }
 
 fa-fa-icon:hover {
@@ -30,7 +35,7 @@ fa-fa-icon:hover {
 When a song is hovered, animate its background color to a lighter grey over 0.5s, using CSS selectors.
 
 song {
-  transition: background-color, 0.5s;
+  transition: background-color 0.5s;
 }
 
 song:hover {
@@ -42,6 +47,8 @@ song:hover {
 Add a script tag to load jQuery UI javascript on the page, using Google's CDN (google: "jQuery UI google CDN").
 Make the Library and Playlist sortable.
 Allow dragging and dropping songs between the Library and the Playlist.
+
+
 
 ## Part 3
 When a song is played and then returned to the library, try double clicked it to show the notes. If you weren't careful, it won't work anymore! Use event delegation with the on method to fix this problem.
