@@ -96,4 +96,11 @@ $(document).ready(function() {
       clickedSong = true;
     }
   });
+
+  // Make the Library and Playlist sortable.
+  $(".sortable").disableSelection();
+  $(".sortable").sortable();
+
+  $("#playlist-list").sortable({connectWith: "#library-list"});
+  $("#library-list").sortable({connectWith: "#playlist-list"});
 });
