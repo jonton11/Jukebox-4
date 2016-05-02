@@ -82,5 +82,18 @@ $(document).ready(function() {
     });
   });
 
-  
+  // When the page loads, make the message fade in over 0.8s. Then, after 3s have passed, fade out the message over 0.8s.
+  $('#message').fadeIn(800).delay(3000).fadeOut(800);
+
+  // Double click a song to show the notes over 0.3s. Also implemented double click to close.
+  var clickedSong = true;
+  $('li').dblclick(function() {
+    if (clickedSong) {
+      $(this).find('.notes').slideDown(300);
+      clickedSong = !clickedSong;
+    } else {
+      $(this).find('.notes').slideUp(300);
+      clickedSong = true;
+    }
+  });
 });

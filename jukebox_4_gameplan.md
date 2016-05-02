@@ -28,7 +28,7 @@ fa-fa-icon {
 }
 
 fa-fa-icon:hover {
-  opacity: 1
+  opacity: 1;
 }
 ```
 
