@@ -61,7 +61,7 @@ var playAll = function() {
 
   // Disable the play button to start.
   $('#play-button').attr('disabled', true).text('Playing');
-
+  // $('.page-header').addClass('animation', 'animations 2s');
   playNext();
 }
 
@@ -87,6 +87,8 @@ $(document).ready(function() {
   });
 
   // Add Your Code Here.
+
+  // Extend class for animate css
   $.fn.extend({
     animateCss: function (animationName) {
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
@@ -97,14 +99,15 @@ $(document).ready(function() {
   });
 
   // Hide and Remove song when clicking trash icon
-  $('.fa-trash').click(function() {
+  $('#library-list').on('click', '.fa-trash', function() {
     $(this).parent().slideUp(500, function() {
       $(this).remove();
     });
   });
 
+  // This is commented out for future reference - same feature was achieved in .css file
   // $('li').hover(function() {
-  //   $(this).find('.fa-icon').css(opacity: 1);
+  //   $(this).find('.fa-icon').css('opacity', 1);
   // });
 
   // When the page loads, make the message fade in over 0.8s. Then, after 3s have passed, fade out the message over 0.8s.
@@ -113,6 +116,7 @@ $(document).ready(function() {
   // Double click a song to show the notes over 0.3s. Also implemented double click to close.
   var clickedSong = true;
 
+  // Passed the 'li' parameter into our doubleclick call for event delegation so song notes could display after being played
   $('#library-list').on('dblclick', 'li', function() {
     if (clickedSong) {
       $(this).find('.notes').slideDown(300);
@@ -130,10 +134,8 @@ $(document).ready(function() {
   $("#playlist-list").sortable({connectWith: "#library-list"});
   $("#library-list").sortable({connectWith: "#playlist-list"});
 
-  // Passed the 'li' parameter into our doubleclick call for event delegation so song notes could display after being played
-
   // Filter the library, so that it includes only songs that match whatever is typed in the "filter" box. (Hint: Look up the :contains selector or the filter jQuery method)
-  // Not case-sensitive yet
+  // Not case-sensitive yet; Restricted to only filter the Library List
   var filter = function() {
     $("input").on("keyup", function() {
       var word = $('input:text').val();
@@ -146,9 +148,5 @@ $(document).ready(function() {
   };
 
   filter();
-
-
-
-
 
 });

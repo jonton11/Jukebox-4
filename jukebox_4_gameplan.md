@@ -17,6 +17,7 @@ Make the song notes hidden when the page initially loads. Then, when you double 
   display: none;
 }
 ```
+
 ```js
 // Double click a song to show the notes over 0.3s. Also implemented double click to close.
 var clickedSong = true;
@@ -115,6 +116,7 @@ Make the "Play" button shake when it is clicked but there are no songs in the pl
 <!-- Add animated to html tag -->
 <a id="play-button" href="#" class="btn btn-primary btn-block btn-lg animated">
 ```
+
 ```js
 $("#play-button").click("#playlist-list", function() {
   if ($('#playlist-list').children().length > 0) {
@@ -126,4 +128,7 @@ $("#play-button").click("#playlist-list", function() {
   }
 });
 ```
+
 Make the JukeBox logo do a dance while the Jukebox is playing, and stop when it's finished, using CSS keyframe animations. (Hint: Use your imagination).
+
+<!-- Unfinished -->
