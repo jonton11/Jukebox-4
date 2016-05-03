@@ -87,11 +87,10 @@ When a song is played and then returned to the library, try double clicked it to
 $('#library-list').on('dblclick', 'li', function() {
   if (clickedSong) {
     $(this).find('.notes').slideDown(300);
-    clickedSong = !clickedSong;
   } else {
     $(this).find('.notes').slideUp(300);
-    clickedSong = true;
   }
+  clickedSong = !clickedSong;
 });
 ```
 
