@@ -36,15 +36,14 @@ When the page loads, make the message fade in over 0.8s. Then, after 3s have pas
 $('#message').fadeIn(800).delay(3000).fadeOut(800);
 ```
 
-Make the songs' delete icons have a default opacity of 0.3. When your mouse hovers over a song, animate its delete icon's opacity to 1 using CSS transitions. (Hint: The ":hover" CSS Selector may be helpful)
+Make the songs' delete icons have a default opacity of 0.3. When your **mouse hovers over a song**, animate its **delete icon's opacity to 1** using CSS transitions. (Hint: The ":hover" CSS Selector may be helpful)
 
 ```css
 fa-fa-icon {
   opacity: 0.3;
-  transition: opacity 1s;
 }
 
-fa-fa-icon:hover {
+li:hover i.fa-trash {
   opacity: 1;
 }
 ```
@@ -83,6 +82,9 @@ $("#library-list").sortable({connectWith: "#playlist-list"});
 
 ## Part 3
 When a song is played and then returned to the library, try double clicked it to show the notes. If you weren't careful, it won't work anymore! Use event delegation with the on method to fix this problem.
+
+
+
 Filter the library, so that it includes only songs that match whatever is typed in the "filter" box. (Hint: Look up the :contains selector or the filter jQuery method)
 
 ## Part 4

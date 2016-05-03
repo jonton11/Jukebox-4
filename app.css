@@ -41,11 +41,6 @@ li .fa-trash {
   position: relative;
   top: 2px;
   opacity: 0.3;
-  transition: opacity 1s;
-}
-
-li .fa-trash:hover {
-  opacity: 1;
 }
 
 li .notes {
@@ -68,3 +63,7 @@ li .notes {
 
 /* Add Your Styles Here */
 .sortable {}
+
+li:hover i.fa-trash {
+  opacity: 1;
+}

@@ -74,6 +74,7 @@ $(document).ready(function() {
   $('#play-button').on('click', playAll);
 
   // Add Your Code Here.
+  // Don't tell me what to do lul
 
   // Hide and Remove song when clicking trash icon
   $('.fa-trash').click(function() {
@@ -81,6 +82,10 @@ $(document).ready(function() {
       $(this).remove();
     });
   });
+
+  // $('li').hover(function() {
+  //   $(this).find('.fa-icon').css(opacity: 1);
+  // });
 
   // When the page loads, make the message fade in over 0.8s. Then, after 3s have passed, fade out the message over 0.8s.
   $('#message').fadeIn(800).delay(3000).fadeOut(800);
@@ -97,10 +102,11 @@ $(document).ready(function() {
     }
   });
 
-  // Make the Library and Playlist sortable.
+  // Make the Library and Playlist sortable. Note we need the .sortable class in our .css file as well
   $(".sortable").disableSelection();
   $(".sortable").sortable();
 
   $("#playlist-list").sortable({connectWith: "#library-list"});
   $("#library-list").sortable({connectWith: "#playlist-list"});
+
 });
