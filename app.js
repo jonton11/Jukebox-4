@@ -135,14 +135,18 @@ $(document).ready(function() {
   $("#library-list").sortable({connectWith: "#playlist-list"});
 
   // Filter the library, so that it includes only songs that match whatever is typed in the "filter" box. (Hint: Look up the :contains selector or the filter jQuery method)
-  // Not case-sensitive yet; Restricted to only filter the Library List
+  // Restricted to only filter the Library List
   var filter = function() {
     $("input").on("keyup", function() {
-      var word = $('input:text').val();
-      if ($('input:text').val() == ""){
+      var word = $('input:text').val().toLowerCase();
+      if ($('input:text').val()=="") {
         $('#library-list > li').show();
       } else if ($('span.title:contains("'+word+'")')){
-        $('span.title:not(:contains("'+word+'"))').parent("#library-list > li").hide();
+        $('#library-list > li').hide();
+        $("#library-list > li").each(function() {
+          var fil = $(this).find(".title").text().toLowerCase();
+          if(fil.search(word)>-1){$(this).show()}
+        });
       }
     });
   };
