@@ -82,10 +82,22 @@ $("#library-list").sortable({connectWith: "#playlist-list"});
 
 ## Part 3
 When a song is played and then returned to the library, try double clicked it to show the notes. If you weren't careful, it won't work anymore! Use event delegation with the on method to fix this problem.
-
-
+```js
+// Pass 'li' into the on() function
+$('#library-list').on('dblclick', 'li', function() {
+  if (clickedSong) {
+    $(this).find('.notes').slideDown(300);
+    clickedSong = !clickedSong;
+  } else {
+    $(this).find('.notes').slideUp(300);
+    clickedSong = true;
+  }
+});
+```
 
 Filter the library, so that it includes only songs that match whatever is typed in the "filter" box. (Hint: Look up the :contains selector or the filter jQuery method)
+
+
 
 ## Part 4
 Make the "Play" button shake when it is clicked but there are no songs in the playlist. Use CSS keyframe animations.

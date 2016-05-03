@@ -92,7 +92,8 @@ $(document).ready(function() {
 
   // Double click a song to show the notes over 0.3s. Also implemented double click to close.
   var clickedSong = true;
-  $('li').dblclick(function() {
+
+  $('#library-list').on('dblclick', 'li', function() {
     if (clickedSong) {
       $(this).find('.notes').slideDown(300);
       clickedSong = !clickedSong;
@@ -109,4 +110,5 @@ $(document).ready(function() {
   $("#playlist-list").sortable({connectWith: "#library-list"});
   $("#library-list").sortable({connectWith: "#playlist-list"});
 
+  // Passed the 'li' parameter into our doubleclick call for event delegation so song notes could display after being played
 });
