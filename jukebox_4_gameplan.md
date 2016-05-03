@@ -95,12 +95,35 @@ $('#library-list').on('dblclick', 'li', function() {
 ```
 
 Filter the library, so that it includes only songs that match whatever is typed in the "filter" box. (Hint: Look up the :contains selector or the filter jQuery method)
-
-
+```js
+var filter = function() {
+  $("input").on("keyup", function() {
+    var word = $('input:text').val();
+    if ($('input:text').val() == ""){
+      $('li').show();
+    } else if ($('span.title:contains("'+word+'")')){
+      $('span.title:not(:contains("'+word+'"))').parent("li").hide();
+    }
+  });
+};
+```
 
 ## Part 4
 Make the "Play" button shake when it is clicked but there are no songs in the playlist. Use CSS keyframe animations.
 
-
-
+```html
+<!-- Add animated to html tag -->
+<a id="play-button" href="#" class="btn btn-primary btn-block btn-lg animated">
+```
+```js
+$("#play-button").click("#playlist-list", function() {
+  if ($('#playlist-list').children().length > 0) {
+    // There are songs
+    playAll();
+  } else {
+    // Shake
+    $("#play-button").toggleClass('shake');
+  }
+});
+```
 Make the JukeBox logo do a dance while the Jukebox is playing, and stop when it's finished, using CSS keyframe animations. (Hint: Use your imagination).
