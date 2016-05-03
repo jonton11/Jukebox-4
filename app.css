@@ -67,3 +67,19 @@ li .notes {
 li:hover i.fa-trash {
   opacity: 1;
 }
+
+@keyframes animations {
+  0% {
+    animation-name: swing;
+  }
+  50% {
+    animation-name: tada;
+  }
+  100% {
+    animation-name: jello;
+  }
+}
+
+.page-header {
+  
+}

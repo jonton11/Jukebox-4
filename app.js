@@ -76,15 +76,25 @@ $(document).ready(function() {
     if ($('#playlist-list').children().length > 0) {
       // There are songs
       playAll();
+      // while (playAll) {
+      //   $('.page-header').addClass('animation', 'animations 2s infinite');
+      // }
 
     } else {
       // Shake
-      $("#play-button").toggleClass('shake');
+      $("#play-button").animateCss('shake');
     }
   });
 
   // Add Your Code Here.
-  // Don't tell me what to do lul
+  $.fn.extend({
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        $(this).addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+        });
+    }
+  });
 
   // Hide and Remove song when clicking trash icon
   $('.fa-trash').click(function() {
@@ -128,9 +138,9 @@ $(document).ready(function() {
     $("input").on("keyup", function() {
       var word = $('input:text').val();
       if ($('input:text').val() == ""){
-        $('li').show();
+        $('#library-list > li').show();
       } else if ($('span.title:contains("'+word+'")')){
-        $('span.title:not(:contains("'+word+'"))').parent("li").hide();
+        $('span.title:not(:contains("'+word+'"))').parent("#library-list > li").hide();
       }
     });
   };
