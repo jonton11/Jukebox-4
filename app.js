@@ -71,7 +71,17 @@ $(document).ready(function() {
   initializeLibrary();
 
   // Play all songs in the playlist when the "play" button is clicked.
-  $('#play-button').on('click', playAll);
+  // Make the "Play" button shake when it is clicked but there are no songs in the playlist. Use CSS keyframe animations.
+  $("#play-button").click("#playlist-list", function() {
+    if ($('#playlist-list').children().length > 0) {
+      // There are songs
+      playAll();
+
+    } else {
+      // Shake
+      $("#play-button").toggleClass('shake');
+    }
+  });
 
   // Add Your Code Here.
   // Don't tell me what to do lul
@@ -111,4 +121,24 @@ $(document).ready(function() {
   $("#library-list").sortable({connectWith: "#playlist-list"});
 
   // Passed the 'li' parameter into our doubleclick call for event delegation so song notes could display after being played
+
+  // Filter the library, so that it includes only songs that match whatever is typed in the "filter" box. (Hint: Look up the :contains selector or the filter jQuery method)
+  // Not case-sensitive yet
+  var filter = function() {
+    $("input").on("keyup", function() {
+      var word = $('input:text').val();
+      if ($('input:text').val() == ""){
+        $('li').show();
+      } else if ($('span.title:contains("'+word+'")')){
+        $('span.title:not(:contains("'+word+'"))').parent("li").hide();
+      }
+    });
+  };
+
+  filter();
+
+
+
+
+
 });
