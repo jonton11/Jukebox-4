@@ -20,8 +20,7 @@ Make the song notes hidden when the page initially loads. Then, when you double 
 
 ```js
 // Double click a song to show the notes over 0.3s. Also implemented double click to close.
-var clickedSong = true;
-$('li').dblclick(function() {
+$('#library-list').on('dblclick', 'li', function() {
   if (clickedSong) {
     $(this).find('.notes').slideDown(300);
     clickedSong = !clickedSong;
@@ -84,6 +83,7 @@ $("#library-list").sortable({connectWith: "#playlist-list"});
 ## Part 3
 When a song is played and then returned to the library, try double clicked it to show the notes. If you weren't careful, it won't work anymore! Use event delegation with the on method to fix this problem.
 ```js
+// Note that we have to fix this issue for all events now
 // Pass 'li' into the on() function
 $('#library-list').on('dblclick', 'li', function() {
   if (clickedSong) {
@@ -93,17 +93,30 @@ $('#library-list').on('dblclick', 'li', function() {
   }
   clickedSong = !clickedSong;
 });
+
+// Hide and Remove song when clicking trash icon
+$('#library-list').on('click', '.fa-trash', function() {
+  $(this).parent().slideUp(500, function() {
+    $(this).remove();
+  });
+});
 ```
 
 Filter the library, so that it includes only songs that match whatever is typed in the "filter" box. (Hint: Look up the :contains selector or the filter jQuery method)
 ```js
+// Courtesy of Lucas
+
 var filter = function() {
   $("input").on("keyup", function() {
-    var word = $('input:text').val();
-    if ($('input:text').val() == ""){
-      $('li').show();
+    var word = $('input:text').val().toLowerCase();
+    if ($('input:text').val()=="") {
+      $('#library-list > li').show();
     } else if ($('span.title:contains("'+word+'")')){
-      $('span.title:not(:contains("'+word+'"))').parent("li").hide();
+      $('#library-list > li').hide();
+      $("#library-list > li").each(function() {
+        var fil = $(this).find(".title").text().toLowerCase();
+        if(fil.search(word)>-1){$(this).show()}
+      });
     }
   });
 };
@@ -118,6 +131,7 @@ Make the "Play" button shake when it is clicked but there are no songs in the pl
 ```
 
 ```js
+// Using CSS Animations instead of keyframes
 $("#play-button").click("#playlist-list", function() {
   if ($('#playlist-list').children().length > 0) {
     // There are songs
